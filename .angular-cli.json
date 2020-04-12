@@ -58,5 +58,8 @@
   "defaults": {
     "styleExt": "css",
     "component": {}
+  },
+  "cli": {
+    "analytics": "be9348a3-90d1-4308-8b47-e711d529f0fa"
   }
 }
