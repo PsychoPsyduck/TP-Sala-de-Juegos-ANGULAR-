@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JuegoAnagrama } from '../../clases/juego-anagrama'
 
 @Component({
   selector: 'app-anagrama',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./anagrama.component.css']
 })
 export class AnagramaComponent implements OnInit {
+
+  nuevoJuego: JuegoAnagrama;
 
   constructor() { }
 
