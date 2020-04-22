@@ -1,5 +1,16 @@
-<p>tateti works!</p>
+<h1>Jugador: {{player}}</h1>
 
-<form name="juego">
-    
-</form>
+<button (click)="newGame()">Comienzo!</button>
+
+<h2 *ngIf="winner">
+    Jugador {{winner}} gano la partida!
+</h2>
+
+<main>
+    <app-cuadrado 
+        *ngFor="let val of cuadrados; let i = index"
+        [value]="val"
+        (click)="makeMove(i)">
+
+    </app-cuadrado>
+</main>

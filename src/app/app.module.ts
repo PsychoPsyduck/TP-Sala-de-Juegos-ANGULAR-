@@ -56,6 +56,7 @@ import { SexoPipe } from './pipes/sexo.pipe';
 import { MemotestComponent } from './componentes/memotest/memotest.component';
 import { TatetiComponent } from './componentes/tateti/tateti.component';
 import { PPTComponent } from './componentes/ppt/ppt.component';
+import { CuadradoComponent } from './componentes/tateti/cuadrado/cuadrado.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { PPTComponent } from './componentes/ppt/ppt.component';
     SexoPipe,
     MemotestComponent,
     TatetiComponent,
-    PPTComponent
+    PPTComponent,
+    CuadradoComponent
   ],
   imports: [
     BrowserModule,
