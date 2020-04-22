@@ -29,9 +29,9 @@ import { AnagramaComponent } from '../componentes/anagrama/anagrama.component';
 
 // declaro donde quiero que se dirija
 const MiRuteo = [
-{path: 'Jugadores' , component: JugadoresListadoComponent},
-{path: '' , component: PrincipalComponent},
+{path: '' , component: LoginComponent},
 {path: 'Login' , component: LoginComponent},
+{path: 'Jugadores' , component: JugadoresListadoComponent},
 {path: 'Mapa' , component: MapaDeGoogleComponent},
 {path: 'QuienSoy' , component: QuienSoyComponent},
 {path: 'Registro' , component: RegistroComponent},
@@ -52,8 +52,8 @@ children:
       {path: 'PPT' , component: PPTComponent},
       {path: 'Anagrama' , component: AnagramaComponent}]
 },
-{path: '**' , component: ErrorComponent},
-{path: 'error' , component: ErrorComponent}];
+{path: 'error' , component: ErrorComponent},
+{path: '**' , component: ErrorComponent}];
 
 @NgModule({
   imports: [
