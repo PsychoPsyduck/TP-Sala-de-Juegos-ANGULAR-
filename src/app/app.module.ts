@@ -59,9 +59,10 @@ import { PPTComponent } from './componentes/ppt/ppt.component';
 import { CuadradoComponent } from './componentes/tateti/cuadrado/cuadrado.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
+// import {MatCheckboxModule} from '@angular/material/checkbox';
+// import {MatSidenavModule} from '@angular/material/sidenav';
+// import {MatToolbarModule} from '@angular/material/toolbar';
+import { MaterialComponent } from './componentes/material/material.component';
 
 
 @NgModule({
@@ -103,9 +104,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
       apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
     }),
     BrowserAnimationsModule,
-    MatCheckboxModule,
-    MatSidenavModule,
-    MatToolbarModule
+    MaterialComponent
+    // MatCheckboxModule,
+    // MatSidenavModule,
+    // MatToolbarModule
     // NgbModule.forRoot(MiRuteo),
     // importo el ruteo
     // RouterModule.forRoot(MiRuteo)
