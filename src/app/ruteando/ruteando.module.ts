@@ -25,6 +25,7 @@ import { TatetiComponent } from '../componentes/tateti/tateti.component';
 import { MemotestComponent } from '../componentes/memotest/memotest.component';
 import { PPTComponent } from '../componentes/ppt/ppt.component';
 import { AnagramaComponent } from '../componentes/anagrama/anagrama.component';
+import { ConfiguracionComponent } from '../componentes/configuracion/configuracion.component';
 
 
 // declaro donde quiero que se dirija
@@ -38,6 +39,7 @@ const MiRuteo = [
 {path: 'Principal' , component: PrincipalComponent},
 {path: 'Listado' , component: ListadoComponent},
 {path: 'Paises' , component: ListadoDePaisesComponent},
+{path: 'Configuracion' , component: ConfiguracionComponent},
 
 { path: 'Juegos' ,
 component: JuegosComponent ,

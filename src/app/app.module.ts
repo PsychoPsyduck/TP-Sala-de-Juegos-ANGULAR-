@@ -63,6 +63,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import {MatToolbarModule} from '@angular/material/toolbar';
 import { MaterialComponent } from './componentes/material/material.component';
+import { TarjetaComponent } from './componentes/memotest/tarjeta/tarjeta.component';
+import { ConfiguracionComponent } from './componentes/configuracion/configuracion.component';
 
 
 @NgModule({
@@ -93,7 +95,9 @@ import { MaterialComponent } from './componentes/material/material.component';
     MemotestComponent,
     TatetiComponent,
     PPTComponent,
-    CuadradoComponent
+    CuadradoComponent,
+    TarjetaComponent,
+    ConfiguracionComponent
   ],
   imports: [
     BrowserModule,
