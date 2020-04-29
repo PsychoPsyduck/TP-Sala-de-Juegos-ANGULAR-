@@ -65,6 +65,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialComponent } from './componentes/material/material.component';
 import { TarjetaComponent } from './componentes/memotest/tarjeta/tarjeta.component';
 import { ConfiguracionComponent } from './componentes/configuracion/configuracion.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { ConfiguracionComponent } from './componentes/configuracion/configuracio
     PPTComponent,
     CuadradoComponent,
     TarjetaComponent,
-    ConfiguracionComponent
+    ConfiguracionComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

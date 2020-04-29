@@ -14,19 +14,31 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  Salir() {
+    this.router.navigate(['/Login']);
+  }
+
+  Principal() {
+    this.router.navigate(['/Principal']);
+  }
+
+  Quien() {
+    this.router.navigate(['/QuienSoy']);
+  }
+
   Juego(tipo: string) {
     switch (tipo) {
-      case 'Adivina':
-          this.router.navigate(['/Juegos/Adivina']);
+      case 'Juegos':
+          this.router.navigate(['/Juegos']);
         break;
-      case 'Agilidad':
-          this.router.navigate(['/Juegos/Agilidad']);
+      case 'Listado':
+          this.router.navigate(['/Listado']);
         break;
-      case 'AdivinaMasListado':
-          this.router.navigate(['/Juegos/AdivinaMasListado']);
+      case 'Configuracion':
+          this.router.navigate(['/Configuracion']);
         break;
-      case 'AgilidadaMasListado':
-          this.router.navigate(['/Juegos/AgilidadaMasListado']);
+      case 'Jugadores':
+          this.router.navigate(['/Jugadores']);
         break;
     }
   }
