@@ -67,7 +67,6 @@ import { TarjetaComponent } from './componentes/memotest/tarjeta/tarjeta.compone
 import { ConfiguracionComponent } from './componentes/configuracion/configuracion.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,7 +117,13 @@ import { FooterComponent } from './componentes/footer/footer.component';
     // importo el ruteo
     // RouterModule.forRoot(MiRuteo)
   ],
-  providers: [ JuegoServiceService, MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService],
+  providers: [ 
+    JuegoServiceService, 
+    MiHttpService,
+    PaisesService,
+    ArchivosJugadoresService,
+    JugadoresService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

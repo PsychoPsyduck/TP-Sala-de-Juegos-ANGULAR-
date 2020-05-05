@@ -14,9 +14,24 @@ export class RegistroComponent implements OnInit {
   formRegistro:FormGroup=this.miConstructor.group({
     usuario:this.email
   });*/
-  constructor( ) { }
+  
+  usuario = '';
+  clave= '';
+  repitaClave= '';
+  terminosCondiciones: boolean;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router) {
+
+  }
 
   ngOnInit() {
   }
 
+  Registrar() {
+    if (this.clave === this.repitaClave && this.terminosCondiciones == true) {
+      this.router.navigate(['/Principal']);
+    }
+  }
 }

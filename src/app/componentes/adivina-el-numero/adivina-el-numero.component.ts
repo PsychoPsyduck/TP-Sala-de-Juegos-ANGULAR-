@@ -1,6 +1,8 @@
 
 import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
-import { JuegoAdivina } from '../../clases/juego-adivina'
+import { JuegoAdivina } from '../../clases/juego-adivina';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { timeInterval } from 'rxjs/operators';
 
 @Component({
   selector: 'app-adivina-el-numero',
@@ -14,11 +16,15 @@ export class AdivinaElNumeroComponent implements OnInit {
   Mensajes:string;
   contador:number;
   ocultarVerificar:boolean;
+  durationInSeconds = 5;
+  Tiempo: number;
+  repetidor:any;
  
-  constructor() { 
+  constructor(private _snackBar: MatSnackBar) { 
     this.nuevoJuego = new JuegoAdivina();
     console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
     this.ocultarVerificar=false;
+    this.Tiempo=3; 
   }
   generarnumero() {
     this.nuevoJuego.generarnumero();
@@ -29,64 +35,88 @@ export class AdivinaElNumeroComponent implements OnInit {
     this.contador++;
     this.ocultarVerificar=true;
     console.info("numero Secreto:",this.nuevoJuego.gano);  
-    if (this.nuevoJuego.verificar()){
-      
-      this.enviarJuego.emit(this.nuevoJuego);
-      this.MostarMensaje("Sos un Genio!!!",true);
-      this.nuevoJuego.numeroSecreto=0;
 
-    }else{
-
-      let mensaje:string;
-      switch (this.contador) {
-        case 1:
-          mensaje="No, intento fallido, animo";
-          break;
-          case 2:
-          mensaje="No,Te estaras Acercando???";
-          break;
-          case 3:
-          mensaje="No es, Yo crei que la tercera era la vencida.";
-          break;
-          case 4:
-          mensaje="No era el  "+this.nuevoJuego.numeroIngresado;
-          break;
-          case 5:
-          mensaje=" intentos y nada.";
-          break;
-          case 6:
-          mensaje="Afortunado en el amor";
-          break;
+    this.repetidor = setInterval(()=>{ 
       
-        default:
-            mensaje="Ya le erraste "+ this.contador+" veces";
-          break;
+      this.Tiempo--;
+      console.log("llego", this.Tiempo);
+      if(this.Tiempo==0 ) {
+        clearInterval(this.repetidor);
+        if (this.nuevoJuego.verificar()){
+      
+          this.enviarJuego.emit(this.nuevoJuego);
+          this.MostarMensaje("Sos un Genio!!!",true);
+          this.nuevoJuego.numeroSecreto=0;
+    
+        }else{
+    
+          let mensaje:string;
+          switch (this.contador) {
+            case 1:
+              mensaje="No, intento fallido, animo. ";
+              break;
+              case 2:
+              mensaje="No,Te estaras Acercando??? ";
+              break;
+              case 3:
+              mensaje="No es, Yo crei que la tercera era la vencida. ";
+              break;
+              case 4:
+              mensaje="No era el "+this.nuevoJuego.numeroIngresado + " ";
+              break;
+              case 5:
+              mensaje="intentos y nada. ";
+              break;
+              case 6:
+              mensaje="Afortunado en el amor ";
+              break;
+          
+            default:
+                mensaje="Ya le erraste "+ this.contador+" veces. ";
+              break;
+          }
+          this.MostarMensaje("#"+this.contador+" "+mensaje+" ayuda :"+this.nuevoJuego.retornarAyuda());
+         
+    
+        }
+        console.info("numero Secreto:",this.nuevoJuego.gano);  
+        this.Tiempo=3;
       }
-      this.MostarMensaje("#"+this.contador+" "+mensaje+" ayuda :"+this.nuevoJuego.retornarAyuda());
-     
-
-    }
-    console.info("numero Secreto:",this.nuevoJuego.gano);  
+    }, 900);
+    
   }  
 
   MostarMensaje(mensaje:string="este es el mensaje",ganador:boolean=false) {
     this.Mensajes=mensaje;    
-    var x = document.getElementById("snackbar");
-    if(ganador)
-      {
-        x.className = "show Ganador";
-      }else{
-        x.className = "show Perdedor";
-      }
+    // var x = document.getElementById("snackbar");
+    // if(ganador)
+    //   {
+    //     x.className = "show Ganador";
+    //   }else{
+    //     x.className = "show Perdedor";
+    //   }
     var modelo=this;
-    setTimeout(function(){ 
-      x.className = x.className.replace("show", "");
-      modelo.ocultarVerificar=false;
-     }, 3000);
-    console.info("objeto",x);
-  
+    
+    this.openSnackBar(mensaje);
+    modelo.ocultarVerificar=false;
+
+    // this.repetidor = setInterval(()=>{ 
+      
+    //   this.Tiempo--;
+    //   console.log("llego", this.Tiempo);
+    //   if(this.Tiempo==0 ) {
+    //     clearInterval(this.repetidor);
+    //     this.openSnackBar(mensaje);
+    //     modelo.ocultarVerificar=false;
+    //     this.Tiempo=3;
+    //   }
+    // }, 900);
+
    }  
   ngOnInit() {
   }
 
+  openSnackBar(mensaje:string) {
+    this._snackBar.open(mensaje, "", {duration: this.durationInSeconds * 1000});
+  }
 }
