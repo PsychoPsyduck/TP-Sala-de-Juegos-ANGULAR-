@@ -5,8 +5,8 @@
   <div mat-card-avatar class="example-header-image"></div>
   <form action="">
     <mat-form-field class="full-width-input">
-      <mat-label>Usuario</mat-label>
-      <input matInput type="text" [(ngModel)]="usuario" name="uname">
+      <mat-label>Mail</mat-label>
+      <input matInput type="text" [(ngModel)]="mail" name="umail">
     </mat-form-field>
     <br>
     <mat-form-field class="full-width-input">
@@ -16,6 +16,10 @@
     <br>
     <button class="example-button-row" mat-raised-button color="primary" *ngIf="logeando"  (click)="Entrar()">Entrar</button>
   </form>
+  <br>
+  <mat-divider></mat-divider>
+  <br>
+  <h3>No tenes usuario? <a href="/Registro">Registrate</a></h3>
 </mat-card>
 
 <app-footer></app-footer>

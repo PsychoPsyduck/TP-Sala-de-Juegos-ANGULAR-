@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  firebase: {
+  firebaseConfig: {
     apiKey: "AIzaSyB9zH6rp1ILGJkc_l8UO-JwH8bkJyEzO78",
     authDomain: "sande-sala-de-juegos.firebaseapp.com",
     databaseURL: "https://sande-sala-de-juegos.firebaseio.com",

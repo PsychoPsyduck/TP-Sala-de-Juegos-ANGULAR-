@@ -67,9 +67,19 @@ import { TarjetaComponent } from './componentes/memotest/tarjeta/tarjeta.compone
 import { ConfiguracionComponent } from './componentes/configuracion/configuracion.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 
+// Firebase App (the core Firebase SDK) is always required and must be listed first
+import * as firebase from "firebase/app";
+// Add the Firebase products that you want to use
+import "firebase/auth";
+import "firebase/firestore";
+import { environment } from '../environments/environment';
+    // Initialize Cloud Firestore through Firebase
+    firebase.initializeApp(environment.firebaseConfig);
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+// import { FirebaseService } from './servicios/firebase.service';
 
 @NgModule({
   declarations: [
@@ -114,8 +124,9 @@ import { environment } from '../environments/environment';
     }),
     BrowserAnimationsModule,
     MaterialComponent,
-    AngularFireModule.initializeApp(environment.firebase),
- 	  AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule
     // MatCheckboxModule,
     // MatSidenavModule,
     // MatToolbarModule
@@ -128,7 +139,8 @@ import { environment } from '../environments/environment';
     MiHttpService,
     PaisesService,
     ArchivosJugadoresService,
-    JugadoresService
+    JugadoresService,
+    // FirebaseService
   ],
   bootstrap: [AppComponent]
 })

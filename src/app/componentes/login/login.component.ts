@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import {Subscription, BehaviorSubject} from "rxjs";
 
+import { FirebaseService } from '../../servicios/firebase.service';
+import { Jugador } from '../../clases/jugador';
 
 //import {TimerObservable} from "rxjs/observable/TimerObservable";
 @Component({
@@ -13,7 +15,7 @@ import {Subscription, BehaviorSubject} from "rxjs";
 export class LoginComponent implements OnInit {
 
   private subscription: Subscription;
-  usuario = '';
+  mail = '';
   clave= '';
   progreso: number;
   progresoMensaje="esperando..."; 
@@ -24,7 +26,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    public firebaseService: FirebaseService) {
       this.progreso=0;
       this.ProgresoDeAncho="0%";
 
@@ -34,51 +37,8 @@ export class LoginComponent implements OnInit {
   }
 
   Entrar() {
-    if (this.usuario === 'admin' && this.clave === 'admin') {
-      this.router.navigate(['/Principal']);
-    }
+    var anuncio = this.firebaseService.loginJugador(this.mail, this.clave)
+    this.router.navigate(['/Principal']);
   }
-  MoverBarraDeProgreso() {
-    
-    this.logeando=false;
-    this.clase="progress-bar progress-bar-danger progress-bar-striped active";
-    this.progresoMensaje="NSA spy..."; 
-    // let timer = TimerObservable.create(200, 50);
-    let bs = new BehaviorSubject<boolean>(false);//ver
-    this.subscription = bs.subscribe(t => {
-      console.log("inicio");
-      this.progreso=this.progreso+1;
-      this.ProgresoDeAncho=this.progreso+20+"%";
-      switch (this.progreso) {
-        case 15:
-        this.clase="progress-bar progress-bar-warning progress-bar-striped active";
-        this.progresoMensaje="Verificando ADN..."; 
-          break;
-        case 30:
-          this.clase="progress-bar progress-bar-Info progress-bar-striped active";
-          this.progresoMensaje="Adjustando encriptación.."; 
-          break;
-          case 60:
-          this.clase="progress-bar progress-bar-success progress-bar-striped active";
-          this.progresoMensaje="Recompilando Info del dispositivo..";
-          break;
-          case 75:
-          this.clase="progress-bar progress-bar-success progress-bar-striped active";
-          this.progresoMensaje="Recompilando claves facebook, gmail, chats..";
-          break;
-          case 85:
-          this.clase="progress-bar progress-bar-success progress-bar-striped active";
-          this.progresoMensaje="Instalando KeyLogger..";
-          break;
-          
-        case 100:
-          console.log("final");
-          this.subscription.unsubscribe();
-          this.Entrar();
-          break;
-      }     
-    });
-    //this.logeando=true;
-  }
-
+  
 }
