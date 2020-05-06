@@ -11,8 +11,8 @@ export const environment = {
     databaseURL: "https://sande-sala-de-juegos.firebaseio.com",
     projectId: "sande-sala-de-juegos",
     storageBucket: "sande-sala-de-juegos.appspot.com",
-    messagingSenderId: "567589715472",
-    appId: "1:567589715472:web:5a28074c6ed33dbb6cd495",
-    measurementId: "G-L8EHXPYS0Q"
+    messagingSenderId: "567589715472"
+    // appId: "1:567589715472:web:5a28074c6ed33dbb6cd495",
+    // measurementId: "G-L8EHXPYS0Q"
   }
 };
