@@ -69,7 +69,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
+import { environment, firebaseConfig } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -114,7 +114,7 @@ import { environment } from '../environments/environment';
     }),
     BrowserAnimationsModule,
     MaterialComponent,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(firebaseConfig.firebase),
  	  AngularFirestoreModule,
     // MatCheckboxModule,
     // MatSidenavModule,
