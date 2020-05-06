@@ -67,6 +67,10 @@ import { TarjetaComponent } from './componentes/memotest/tarjeta/tarjeta.compone
 import { ConfiguracionComponent } from './componentes/configuracion/configuracion.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,7 +113,9 @@ import { FooterComponent } from './componentes/footer/footer.component';
       apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
     }),
     BrowserAnimationsModule,
-    MaterialComponent
+    MaterialComponent,
+    AngularFireModule.initializeApp(environment.firebase),
+ 	  AngularFirestoreModule,
     // MatCheckboxModule,
     // MatSidenavModule,
     // MatToolbarModule
