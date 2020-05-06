@@ -114,7 +114,7 @@ import { environment, firebaseConfig } from '../environments/environment';
     }),
     BrowserAnimationsModule,
     MaterialComponent,
-    AngularFireModule.initializeApp(firebaseConfig.firebase),
+    AngularFireModule.initializeApp(firebaseConfig),
  	  AngularFirestoreModule,
     // MatCheckboxModule,
     // MatSidenavModule,
