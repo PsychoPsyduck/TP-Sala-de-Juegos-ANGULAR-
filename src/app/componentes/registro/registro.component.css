@@ -11,3 +11,6 @@ mat-card {
     margin: 2em auto;
     text-align: center;
 }
+button {
+    margin: 1em;
+}

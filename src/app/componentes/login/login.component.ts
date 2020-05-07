@@ -22,23 +22,39 @@ export class LoginComponent implements OnInit {
   logeando=true;
   ProgresoDeAncho:string;
 
-  clase="progress-bar progress-bar-info progress-bar-striped ";
+  ocultarVerificar: boolean;
+  Tiempo: number;
+  repetidor:any;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     public firebaseService: FirebaseService) {
-      this.progreso=0;
-      this.ProgresoDeAncho="0%";
-
-  }
+      this.Tiempo=5; 
+      this.ocultarVerificar=false;
+    }
 
   ngOnInit() {
   }
 
   Entrar() {
-    var anuncio = this.firebaseService.loginJugador(this.mail, this.clave)
-    this.router.navigate(['/Principal']);
+    
+    this.ocultarVerificar=true;
+    this.firebaseService.loginJugador(this.mail, this.clave);
+
+    this.repetidor = setInterval(()=>{ 
+      
+      this.Tiempo--;
+      console.log("llego", this.Tiempo);
+      if(this.Tiempo==0 ) {
+        clearInterval(this.repetidor);
+        this.ocultarVerificar=false;
+        console.log(this.ocultarVerificar);
+        this.Tiempo=5;
+      }
+    }, 900);
   }
+
+  
   
 }

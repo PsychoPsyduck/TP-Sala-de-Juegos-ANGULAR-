@@ -19,6 +19,8 @@ export class FirebaseService {
 
   constructor(public router: Router) { }
 
+  user = null;
+
   db = firebase.firestore();
 
   nuevoJugador(jugador: Jugador) {
@@ -43,7 +45,7 @@ export class FirebaseService {
       credencial.user.getIdToken()
         .then(function (token) {
         localStorage.setItem('token', token);
-        this.router.navigate(['/Login']);
+        router.navigate(['/Login']);
       });
     })
     .catch(function (error) {
@@ -81,12 +83,83 @@ export class FirebaseService {
     
   }
 
+  isAuthenticated() {
+    return localStorage.getItem("token");
+  }
+
   logoutJugador() {
+    var router = this.router;
+
     localStorage.removeItem('token');
     firebase.auth().signOut().then(function () {
       // Sign-out successful.
+      console.log("Bien")
+      router.navigate(['/Login']);
     }).catch(function (error) {
-      // An error happened.
+      console.error("Error: ", error);
     });
+  }
+
+  async resetResult(juego) {
+    await this.getCurrentUser();
+    var db = firebase.firestore();
+    let resultados = db.collection('resultados')
+    let activeRef = await resultados
+      .where('usuarioId', '==', this.user.uid)
+      .where('juego', '==', juego)
+      .get();
+
+      //update
+      activeRef.docs.forEach(function (doc) {
+        let wins = 0;
+        let losses = 0;
+        db.collection("resultados").doc(doc.id)
+          .update({ wins: wins, losses: losses });
+      });
+  }
+
+  async saveResult(juego, gano) {
+    await this.getCurrentUser();
+    var db = firebase.firestore();
+    let resultados = db.collection('resultados')
+    let activeRef = await resultados
+      .where('usuarioId', '==', this.user.uid)
+      .where('juego', '==', juego)
+      .get();
+
+    if (activeRef.empty) {
+      //add
+      db.collection("resultados").add({
+        usuarioId: this.user.uid,
+        juego: juego,
+        wins: gano ? 1 : 0,
+        losses: gano ? 0 : 1
+      });
+    }
+    else {
+      //update
+      activeRef.docs.forEach(function (doc) {
+        let wins = doc.data().wins + (gano ? 1 : 0);
+        let losses = doc.data().losses + (gano ? 0 : 1);
+        db.collection("resultados").doc(doc.id)
+          .update({ wins: wins, losses: losses });
+      });
+    }
+  }
+
+  async getCurrentUser() {
+    firebase.auth().onAuthStateChanged(async user => {
+      this.user = user;
+    });
+  }
+
+  async getUsers() {
+    let usrsRef = await this.db.collection('jugadores').get();
+    return usrsRef;
+  }
+
+  async getResultados() {
+    let resultados = await this.db.collection('resultados').get();
+    return resultados;
   }
 }

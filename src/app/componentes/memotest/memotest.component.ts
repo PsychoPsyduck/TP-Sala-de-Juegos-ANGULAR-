@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TarjetaComponent } from './tarjeta/tarjeta.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { FirebaseService } from '../../servicios/firebase.service';
 
 @Component({
   selector: 'app-memotest',
@@ -9,7 +10,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class MemotestComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,private firebaseService: FirebaseService,
     private router: Router) { }
 
   grilla = [[]];
@@ -110,6 +111,7 @@ export class MemotestComponent implements OnInit {
         }
       }
       this.winner = true;
+      this.firebaseService.saveResult('MemoTest', true);
       
       //this.firebaseService.saveResult('MEMOTEST', true);
     }

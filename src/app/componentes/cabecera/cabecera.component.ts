@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from '../../servicios/firebase.service';
 
 @Component({
   selector: 'app-cabecera',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabeceraComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public firebaseService: FirebaseService) { }
 
   ngOnInit() {
   }
 
+  Salir() {
+    this.firebaseService.logoutJugador();
+  }
 }

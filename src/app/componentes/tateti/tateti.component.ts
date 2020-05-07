@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from '../../servicios/firebase.service';
 
 @Component({
   selector: 'app-tateti',
@@ -12,7 +13,7 @@ export class TatetiComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
     this.newGame();
@@ -35,6 +36,11 @@ export class TatetiComponent implements OnInit {
     }
 
     this.winner = this.calculateWinner();
+    if(this.winner == "X") {
+      this.firebaseService.saveResult('Tateti', true);
+    } else if (this.winner == "O") {
+      this.firebaseService.saveResult('Tateti', false);
+    }
   }
 
   calculateWinner() {

@@ -3,6 +3,7 @@ import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
 import { JuegoAdivina } from '../../clases/juego-adivina';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { timeInterval } from 'rxjs/operators';
+import { FirebaseService } from '../../servicios/firebase.service';
 
 @Component({
   selector: 'app-adivina-el-numero',
@@ -20,8 +21,8 @@ export class AdivinaElNumeroComponent implements OnInit {
   Tiempo: number;
   repetidor:any;
  
-  constructor(private _snackBar: MatSnackBar) { 
-    this.nuevoJuego = new JuegoAdivina();
+  constructor(private _snackBar: MatSnackBar, private firebaseService: FirebaseService) { 
+    this.nuevoJuego = new JuegoAdivina(firebaseService);
     console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
     this.ocultarVerificar=false;
     this.Tiempo=3; 

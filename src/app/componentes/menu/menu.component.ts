@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
+import { FirebaseService } from '../../servicios/firebase.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -9,13 +11,15 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    public firebaseService: FirebaseService) { }
 
   ngOnInit() {
   }
 
   Salir() {
-    this.router.navigate(['/Login']);
+    this.firebaseService.logoutJugador();
+    // this.router.navigate(['/Login']);
   }
 
   Principal() {

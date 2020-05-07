@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { JuegoAnagrama } from '../../clases/juego-anagrama'
+import { JuegoAnagrama } from '../../clases/juego-anagrama';
+import { FirebaseService } from '../../servicios/firebase.service';
 
 @Component({
   selector: 'app-anagrama',
@@ -127,7 +128,7 @@ export class AnagramaComponent implements OnInit {
   repetidor:any;
   resultado: number;
 
-  constructor(){ //private firebaseService: FirebaseServiceService) { 
+  constructor(private firebaseService: FirebaseService){ 
 
     this.Tiempo=3; 
     this.ocultarVerificar=false;
@@ -209,11 +210,13 @@ export class AnagramaComponent implements OnInit {
           console.log("ERA: " + this.palabra[i].letraCorrecta);
           this.resultado = 4;
           console.log("MAL");
+          this.firebaseService.saveResult('Anagrama', false);
           break;
         }
         else {
           this.resultado = 1;
           console.log("BIEN");
+          this.firebaseService.saveResult('Anagrama', true);
         }
       }
     }
@@ -223,9 +226,11 @@ export class AnagramaComponent implements OnInit {
     } else if (this.palabraUsuario.length < this.palabra.length ) {
       this.resultado = 2;
       console.log("FALTA");
+      this.firebaseService.saveResult('Anagrama', false);
     } else {
       this.resultado = 3;
       console.log("SOBRA");
+      this.firebaseService.saveResult('Anagrama', false);
     }
   }
   

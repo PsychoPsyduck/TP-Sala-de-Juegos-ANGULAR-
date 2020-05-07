@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from '../../servicios/firebase.service';
 
 @Component({
   selector: 'app-ppt',
@@ -24,7 +25,7 @@ export class PPTComponent implements OnInit {
   theResult = 0 
   enemySelected  = -1;
 
-  constructor() { }
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
     this.newGame();
@@ -65,50 +66,60 @@ export class PPTComponent implements OnInit {
         case 0: //Piedra
           if(enemyPick == 3 || enemyPick == 2) {
             this.theResult = 0; //gano
+            this.firebaseService.saveResult('PPTLS', true);
             this.scores[0] = this.scores[0]+1;
           }
           else {
             this.theResult = 1; //perdio
+            this.firebaseService.saveResult('PPTLS', false);
             this.scores[1] = this.scores[1]+1;
           }
           break; //Papel
         case 1:
           if(enemyPick == 0 || enemyPick == 4) {
             this.theResult = 0; //gano
+            this.firebaseService.saveResult('PPTLS', true);
             this.scores[0] = this.scores[0]+1;
           }
           else {
             this.theResult = 1; //perdio
+            this.firebaseService.saveResult('PPTLS', false);
             this.scores[1] = this.scores[1]+1;
           }
           break;
         case 2: //Tijera
           if(enemyPick == 1 || enemyPick == 3) {
             this.theResult = 0; //gano
+            this.firebaseService.saveResult('PPTLS', true);
             this.scores[0] = this.scores[0]+1;
           }
           else {
             this.theResult = 1; //perdio
+            this.firebaseService.saveResult('PPTLS', false);
             this.scores[1] = this.scores[1]+1;
           }
           break;
         case 3: //Lizard
           if(enemyPick == 1 || enemyPick == 4) {
             this.theResult = 0; //gano
+            this.firebaseService.saveResult('PPTLS', true);
             this.scores[0] = this.scores[0]+1;
           }
           else {
             this.theResult = 1; //perdio
+            this.firebaseService.saveResult('PPTLS', false);
             this.scores[1] = this.scores[1]+1;
           }
           break;
         case 4: //Spock
           if(enemyPick == 0 || enemyPick == 2) {
             this.theResult = 0; //gano
+            this.firebaseService.saveResult('PPTLS', true);
             this.scores[0] = this.scores[0]+1;
           }
           else {
             this.theResult = 1; //perdio
+            this.firebaseService.saveResult('PPTLS', false);
             this.scores[1] = this.scores[1]+1;
           }
           break;

@@ -14,7 +14,8 @@
       <input matInput type="password" [(ngModel)]="clave" name="psw">
     </mat-form-field>
     <br>
-    <button class="example-button-row" mat-raised-button color="primary" *ngIf="logeando"  (click)="Entrar()">Entrar</button>
+    <button [hidden]="ocultarVerificar"  mat-raised-button color="primary" *ngIf="logeando"  (click)="Entrar()">Entrar</button>
+    <button [hidden]="!ocultarVerificar" mat-raised-button color="primary" *ngIf="logeando"  (click)="Entrar()"><i class="fa fa-spinner fa-spin"></i> Ingresando</button>
   </form>
   <br>
   <mat-divider></mat-divider>

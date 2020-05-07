@@ -19,15 +19,15 @@ export class ListadoComponent implements OnInit {
     
   }
 
-  llamaService(){
-    console.log("llamaService");
-    this.listadoParaCompartir= this.miServicioJuego.listar();
-  }
+  // llamaService(){
+  //   console.log("llamaService");
+  //   this.listadoParaCompartir= this.miServicioJuego.listar();
+  // }
 
-  llamaServicePromesa(){
-    console.log("llamaServicePromesa");
-    this.miServicioJuego.listarPromesa().then((listado) => {
-        this.listadoParaCompartir = listado;
-    });
-  }
+  // llamaServicePromesa(){
+  //   console.log("llamaServicePromesa");
+  //   this.miServicioJuego.listarPromesa().then((listado) => {
+  //       this.listadoParaCompartir = listado;
+  //   });
+  // }
 }

@@ -6,22 +6,21 @@
 </div-->
 
 <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th>Juego</th>
-        <th>Jugador</th>
-        <th>Resultado</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let juego of listado">
-        <td>{{juego.nombre}} </td>
-        <td>{{juego.jugador}} </td> 
-        <td *ngIf="juego.gano">Gano </td>   
-        <td *ngIf="!juego.gano">Perdio</td>     
-      </tr>
-     
-    </tbody>
-  </table>
-
-  <app-footer></app-footer>
+  <thead>
+    <tr>
+      <th>Jugador</th>
+      <th>Juego</th>
+      <th>Victorias</th>
+      <th>Derrotas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rtdo of listado">
+      <td>{{rtdo.usuario}} </td> 
+      <td>{{rtdo.juego}} </td>
+      <td>{{rtdo.wins}} </td>   
+      <td>{{rtdo.losses}} </td>   
+    </tr> 
+    
+  </tbody>
+</table>
