@@ -67,6 +67,13 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { MaterialComponent } from './componentes/material/material.component';
+import { PPTComponent } from './componentes/ppt/ppt.component';
+import { MemotestComponent } from './componentes/memotest/memotest.component';
+import { TatetiComponent } from './componentes/tateti/tateti.component';
+import { CuadradoComponent } from './componentes/tateti/cuadrado/cuadrado.component';
+import { TarjetaComponent } from './componentes/memotest/tarjeta/tarjeta.component';
+import { ConfiguracionComponent } from './componentes/configuracion/configuracion.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +99,14 @@ import { MaterialComponent } from './componentes/material/material.component';
     MapaDeGoogleComponent,
     JugadoresListadoComponent,
     InputJugadoresComponent,
-    SexoPipe
+    SexoPipe,
+    MemotestComponent,
+    TatetiComponent,
+    PPTComponent,
+    CuadradoComponent,
+    TarjetaComponent,
+    ConfiguracionComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
