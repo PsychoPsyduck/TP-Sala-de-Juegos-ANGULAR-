@@ -1,0 +1,20 @@
+<mat-card>
+    <!-- <h1>Jugador: {{player}}</h1> -->
+    <mat-card-title>TaTeTi</mat-card-title>
+    <button mat-raised-button color="primary" (click)="newGame()">Comienzo!</button>
+    <br>
+
+    <h2 *ngIf="winner">
+        Jugador {{winner}} gano la partida!
+    </h2>
+    
+    <mat-card class="main">
+        <app-cuadrado 
+            *ngFor="let val of cuadrados; let i = index"
+            [value]="val"
+            (click)="makeMove(i)">
+
+        </app-cuadrado>
+    </mat-card>
+    
+</mat-card>

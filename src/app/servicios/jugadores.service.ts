@@ -12,34 +12,34 @@ export class JugadoresService {
 
 filtrado:any;
 
-  traertodos(ruta : string,filtro: string) 
-  {
-    return this.miHttp.traerJugadores(ruta).then(data=>{
-      console.info("jugadores service",data);
+  // traertodos(ruta : string,filtro: string) 
+  // {
+  //   return this.miHttp.traerJugadores(ruta).then(data=>{
+  //     console.info("jugadores service",data);
 
-      this.filtrado=data;
+  //     this.filtrado=data;
 
-     let  ganador: boolean;
-      if(filtro=="ganadores")
-      {
-        ganador= true;
-      }
-      else
-      {
-        ganador= false;
-      }
+  //    let  ganador: boolean;
+  //     if(filtro=="ganadores")
+  //     {
+  //       ganador= true;
+  //     }
+  //     else
+  //     {
+  //       ganador= false;
+  //     }
 
-      this.filtrado =this.filtrado.filter(
-        data => data.gano === ganador  || filtro=="todos" ); return this.filtrado}
-      )
-      .catch(errror=>{console.log("error")
+  //     this.filtrado =this.filtrado.filter(
+  //       data => data.gano === ganador  || filtro=="todos" ); return this.filtrado}
+  //     )
+  //     .catch(errror=>{console.log("error")
       
 
 
-    return this.filtrado;
+  //   return this.filtrado;
       
 
-    });
-  }
+  //   });
+  // }
 
 }

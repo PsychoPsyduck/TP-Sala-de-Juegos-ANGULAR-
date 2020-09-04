@@ -1,0 +1,28 @@
+<mat-card>
+    <h2>Jugador</h2>
+    <h2>Cantidad de movimientos: {{jugadas}}</h2>
+    <h2 *ngIf="winner">
+        Ganaste la partida!
+    </h2>
+    
+    <button (click)="newGame()" mat-raised-button  color="primary">Comenzar</button>
+    
+    <table >
+        <tr *ngFor="let fila of grilla">
+            <td *ngFor="let celda of fila" (click)="elegirCelda(celda)">
+                <img src="../../../assets/imagenes/Memotest/Memo1.jpg" *ngIf="celda.iconSrc == 'memo1' && celda.seleccionada">
+                <img src="../../../assets/imagenes/Memotest/Memo2.jpg" *ngIf="celda.iconSrc == 'memo2' && celda.seleccionada">
+                <img src="../../../assets/imagenes/Memotest/Memo3.jpg" *ngIf="celda.iconSrc == 'memo3' && celda.seleccionada">
+                <img src="../../../assets/imagenes/Memotest/Memo4.jpeg" *ngIf="celda.iconSrc == 'memo4' && celda.seleccionada">
+                <img src="../../../assets/imagenes/Memotest/Memo5.jpeg" *ngIf="celda.iconSrc == 'memo5' && celda.seleccionada">
+                <img src="../../../assets/imagenes/Memotest/Memo6.png" *ngIf="celda.iconSrc == 'memo6' && celda.seleccionada">
+                <img src="../../../assets/imagenes/Memotest/Memo7.png" *ngIf="celda.iconSrc == 'memo7' && celda.seleccionada">
+                <img src="../../../assets/imagenes/Memotest/Memo8.png" *ngIf="celda.iconSrc == 'memo8' && celda.seleccionada">
+                <img src="../../../assets/imagenes/Memotest/Memo9.png" *ngIf="celda.iconSrc == 'memo9' && celda.seleccionada">
+                <img src="../../../assets/imagenes/Memotest/Memo10.png" *ngIf="celda.iconSrc == 'memo10' && celda.seleccionada">
+                <img src="../../../assets/imagenes/Memotest/Memo11.jpg"  *ngIf="!celda.seleccionada">
+                
+            </td>
+        </tr>
+    </table>
+</mat-card>

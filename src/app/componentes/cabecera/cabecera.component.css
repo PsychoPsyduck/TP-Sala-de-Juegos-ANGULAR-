@@ -1,7 +1,9 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .panel
 {
     height: 200px;
-    background-image: url("/TP_LAV4_2017/assets/imagenes/cabecera.png");
+    background-image: url("/assets/imagenes/cabecera.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
