@@ -54,6 +54,20 @@ import { AgmCoreModule } from '@agm/core';
 import { InputJugadoresComponent } from './componentes/input-jugadores/input-jugadores.component';
 import { SexoPipe } from './pipes/sexo.pipe';
 
+// Firebase App (the core Firebase SDK) is always required and must be listed first
+import * as firebase from "firebase/app";
+// Add the Firebase products that you want to use
+import "firebase/auth";
+import "firebase/firestore";
+import { environment } from '../environments/environment';
+    // Initialize Cloud Firestore through Firebase
+    firebase.initializeApp(environment.firebaseConfig);
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { MaterialComponent } from './componentes/material/material.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,10 +101,14 @@ import { SexoPipe } from './pipes/sexo.pipe';
     // HttpModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
-    })
+    }),
     // NgbModule.forRoot(MiRuteo),
     // importo el ruteo
-    // RouterModule.forRoot(MiRuteo)
+    // RouterModule.forRoot(MiRuteo),
+    MaterialComponent,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [ JuegoServiceService, MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService],
   bootstrap: [AppComponent]
