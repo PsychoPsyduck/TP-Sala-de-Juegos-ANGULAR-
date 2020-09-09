@@ -44,8 +44,8 @@ children:
       {path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent},
       {path: 'Agilidad' , component: AgilidadAritmeticaComponent}]
 },
-{path: '**' , component: ErrorComponent},
-{path: 'error' , component: ErrorComponent}];
+{path: 'error' , component: ErrorComponent},
+{path: '**' , component: ErrorComponent}];
 
 @NgModule({
   imports: [

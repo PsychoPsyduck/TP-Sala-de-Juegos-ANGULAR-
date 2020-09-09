@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
+import { FirebaseService } from '../../servicios/firebase.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -9,24 +11,38 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    public firebaseService: FirebaseService) { }
 
   ngOnInit() {
   }
 
+  Salir() {
+    this.firebaseService.logoutJugador();
+    // this.router.navigate(['/Login']);
+  }
+
+  Principal() {
+    this.router.navigate(['/Principal']);
+  }
+
+  Quien() {
+    this.router.navigate(['/QuienSoy']);
+  }
+
   Juego(tipo: string) {
     switch (tipo) {
-      case 'Adivina':
-          this.router.navigate(['/Juegos/Adivina']);
+      case 'Juegos':
+          this.router.navigate(['/Juegos']);
         break;
-      case 'Agilidad':
-          this.router.navigate(['/Juegos/Agilidad']);
+      case 'Listado':
+          this.router.navigate(['/Listado']);
         break;
-      case 'AdivinaMasListado':
-          this.router.navigate(['/Juegos/AdivinaMasListado']);
+      case 'Configuracion':
+          this.router.navigate(['/Configuracion']);
         break;
-      case 'AgilidadaMasListado':
-          this.router.navigate(['/Juegos/AgilidadaMasListado']);
+      case 'Jugadores':
+          this.router.navigate(['/Jugadores']);
         break;
     }
   }
