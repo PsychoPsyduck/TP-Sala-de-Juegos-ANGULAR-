@@ -1,3 +1,23 @@
-<p>
-  anagrama works!
-</p>
+<mat-card>
+  <h2>Que pelicula se esconde?</h2>
+
+  <button mat-raised-button  color="primary" (click)="ngOnInit()" id ="btnJugar">Generar Anagrama</button>
+  <br><br>
+
+  <div class="btn-group">
+    <a mat-flat-button color="primary" ngbButtonLabel *ngFor="let letra of letras">{{letra}}</a>
+  </div>
+  <br>
+  <br>
+  <h3  [hidden]="resultado != 0"> El titulo de la pelicula es:</h3>
+  <h3  [hidden]="resultado != 1"> Gano!</h3>
+  <h3  [hidden]="resultado != 2"> Faltan letras.</h3>
+  <h3  [hidden]="resultado != 3"> Sobran letras.</h3>
+  <h3  [hidden]="resultado != 4"> Parece que no es. Volve a probar:</h3>
+  <input [(ngModel)]="palabraUsuario" placeholder="Ingrese su respuesta" name="palabraIngresada" type="text" maxlength="15" class="form-control"/>
+  <br>
+
+  <button [hidden]="ocultarVerificar" mat-raised-button  color="primary" (click)="jugar()" id ="btnJugar">Validar respuesta</button>
+  <button [hidden]="!ocultarVerificar" mat-raised-button  color="primary" id ="btnJugar"><i class="fa fa-spinner fa-spin"></i>Validando</button>
+
+</mat-card>

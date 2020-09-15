@@ -6,7 +6,7 @@ import { AdivinaElNumeroComponent } from './componentes/adivina-el-numero/adivin
 import { ListadoDeResultadosComponent } from './componentes/listado-de-resultados/listado-de-resultados.component';
 import { LoginComponent } from './componentes/login/login.component';
 //  import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-// import { HttpModule } from '@angular/http';
+import { HttpClientModule  } from '@angular/common/http';
 
 // import { AccordionModule } from 'ngx-bootstrap';
 // agrego las clases para utilizar ruteo
@@ -74,6 +74,7 @@ import { CuadradoComponent } from './componentes/tateti/cuadrado/cuadrado.compon
 import { TarjetaComponent } from './componentes/memotest/tarjeta/tarjeta.component';
 import { ConfiguracionComponent } from './componentes/configuracion/configuracion.component';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { AdivinaFraseComponent } from './componentes/adivina-frase/adivina-frase.component';
 
 @NgModule({
   declarations: [
@@ -106,13 +107,14 @@ import { FooterComponent } from './componentes/footer/footer.component';
     CuadradoComponent,
     TarjetaComponent,
     ConfiguracionComponent,
-    FooterComponent
+    FooterComponent,
+    AdivinaFraseComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RuteandoModule,
-    // HttpModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
     }),

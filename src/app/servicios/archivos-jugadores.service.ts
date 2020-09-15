@@ -11,20 +11,20 @@ export class ArchivosJugadoresService {
   }
 
 
-  // public   traerJugadores(ruta) {
-  //   return this.miHttp.httpGetO(this.api+ruta)
-  //   .toPromise()
-  //   .then( data => {
-  //     console.log("Archivo jugadores");
-  //    // console.log( data );
-  //     return data;
-  //   }, err => {
-  //     console.log( err );
-  //   })
+  public   traerJugadores(ruta) {
+    return this.miHttp.httpGetO(this.api+ruta)
+    .toPromise()
+    .then( data => {
+      console.log("Archivo jugadores");
+     // console.log( data );
+      return data;
+    }, err => {
+      console.log( err );
+    })
  
 
   
-  // }
+  }
 
 
 

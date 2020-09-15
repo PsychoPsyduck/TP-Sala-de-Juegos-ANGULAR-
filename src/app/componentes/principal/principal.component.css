@@ -1,6 +1,6 @@
 .imagenDeMenu{
-width: 80px;
-height: 70px;
+    width: 100px;
+    height: 70px;
 }
 
 .hero-text {
@@ -10,4 +10,10 @@ height: 70px;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #100000;
-    }
+}
+
+mat-card .menu{
+    max-width: 65%;
+    margin: 1em auto;
+    text-align: center;
+}
