@@ -76,6 +76,8 @@ import { ConfiguracionComponent } from './componentes/configuracion/configuracio
 import { FooterComponent } from './componentes/footer/footer.component';
 import { AdivinaFraseComponent } from './componentes/adivina-frase/adivina-frase.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,7 +126,8 @@ import { AdivinaFraseComponent } from './componentes/adivina-frase/adivina-frase
     MaterialComponent,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserAnimationsModule
   ],
   providers: [ JuegoServiceService, MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService],
   bootstrap: [AppComponent]

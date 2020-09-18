@@ -12,76 +12,24 @@ import {environment} from '../../environments/environment';
 import "firebase/auth";
 import "firebase/firestore";
 
+//new era
+// import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth'
+// import { Router } from '@angular/router';
+// import { AngularFirestore } from '@angular/fire/firestore'
+
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, 
+              private AFauth: AngularFireAuth
+              ) { }
 
   user = null;
 
   db = firebase.firestore();
-
-  nuevoJugador(jugador: Jugador) {
-    var router = this.router;
-    var dbRef = this.db;
-
-    firebase.auth().createUserWithEmailAndPassword(jugador.mail, jugador.contraseña)
-    .then(function(credencial) {
-      dbRef.collection('jugadores').add({
-        uid: credencial.user.uid,
-        nombre: jugador.nombre,
-        apellido: jugador.apellido,
-        mail: jugador.mail,
-        contraseña: jugador.contraseña,
-        rol: jugador.rol,
-        wins: 0,
-        losses: 0
-      })
-      .then(function (docRef) {
-        console.log("Bien")
-      });
-      credencial.user.getIdToken()
-        .then(function (token) {
-        localStorage.setItem('token', token);
-        router.navigate(['/Login']);
-      });
-    })
-    .catch(function (error) {
-      console.error("Error: ", error);
-    });
-  }
-
-  loginJugador(email: string, pass: string) {
-    var router = this.router;
-    var dbRef = this.db;
-
-    firebase.auth().signInWithEmailAndPassword(email, pass)
-    .then(function (credential) {
-      console.log(credential);
-      dbRef.collection("jugadores")
-      .where("uid", "==", credential.user.uid)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-        credential.user.getIdToken()
-          .then(function (token) {
-            
-            console.log("Bien")
-            
-            localStorage.setItem('token', token);
-            router.navigate(['/Principal']);
-          });
-        });
-      });
-    })
-    .catch(function (error) {
-      console.error("Error: ", error);
-    });
-    
-  }
 
   isAuthenticated() {
     return localStorage.getItem("token");
@@ -161,5 +109,53 @@ export class FirebaseService {
   async getResultados() {
     let resultados = await this.db.collection('resultados').get();
     return resultados;
+  }
+
+  //new era
+  // getCurrentUser() {
+  //   let user = this.AFauth.currentUser;
+  //   console.log(user);
+  //   return user;
+  // }
+
+  register(jugador: Jugador) {
+    return new Promise((resolve, reject) => {
+      this.AFauth.createUserWithEmailAndPassword(jugador.mail, jugador.contraseña)
+        .then(res => {
+          console.log(res.user.uid);
+          const uid = res.user.uid;
+          this.db.collection("jugadores").doc(res.user.uid).set({
+            uid: uid,
+            nombre: jugador.nombre,
+            apellido: jugador.apellido,
+            mail: jugador.mail,
+            contraseña: jugador.contraseña,
+            rol: jugador.rol,
+            wins: 0,
+            losses: 0
+          })
+          resolve(res)
+        })
+        .catch(error => { reject(error) });
+    });
+  }
+
+  login(email: string, password: string) {
+
+    return new Promise((resolve, reject) => {
+      this.AFauth.signInWithEmailAndPassword(email, password)
+        .then(user => {
+          resolve(user);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    })
+  }
+
+  logout() {
+    this.AFauth.signOut().then(() => {
+      this.router.navigate(['/Login']);
+    })
   }
 }

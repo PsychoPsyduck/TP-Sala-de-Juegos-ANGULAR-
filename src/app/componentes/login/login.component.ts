@@ -17,14 +17,14 @@ export class LoginComponent implements OnInit {
   private subscription: Subscription;
   mail = '';
   clave= '';
-  progreso: number;
   progresoMensaje="esperando..."; 
   logeando=true;
-  ProgresoDeAncho:string;
 
   ocultarVerificar: boolean;
   Tiempo: number;
   repetidor:any;
+
+  msjError: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,7 +40,14 @@ export class LoginComponent implements OnInit {
   Entrar() {
     
     this.ocultarVerificar=true;
-    this.firebaseService.loginJugador(this.mail, this.clave);
+    this.firebaseService.login(this.mail, this.clave)
+    .then(res => {
+      this.router.navigate(['/Principal']);
+    })
+    .catch(error => {
+      this.logeando =true;
+      this.msjError = "Los datos son incorrectos o no existe el usuario";
+    });
 
     this.repetidor = setInterval(()=>{ 
       

@@ -26,6 +26,8 @@ export class RegistroComponent implements OnInit {
   repitaClave= '';
   terminosCondiciones: boolean;
 
+  msjError: string;
+
   jugador: Jugador = new Jugador();
 
   constructor(
@@ -49,7 +51,13 @@ export class RegistroComponent implements OnInit {
     this.jugador.rol = "user";
     
     if (this.clave === this.repitaClave && this.terminosCondiciones == true) {
-      this.firebaseService.nuevoJugador(this.jugador)
+      this.firebaseService.register(this.jugador)
+      .then(auth => {
+        this.router.navigate(['/Login']);
+      })
+      .catch(err => {
+        this.msjError = err;
+      })
     }
   }
 }
