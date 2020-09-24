@@ -70,6 +70,7 @@ export class FirebaseService {
     await this.getCurrentUser();
     var db = firebase.firestore();
     let resultados = db.collection('resultados')
+    
     let activeRef = await resultados
       .where('usuarioId', '==', this.user.uid)
       .where('juego', '==', juego)

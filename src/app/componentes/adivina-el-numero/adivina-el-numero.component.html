@@ -1,5 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<!--app-menu></app-menu-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <mat-card>
   <div style="text-align:center">
@@ -16,16 +14,14 @@
     
     
     <h2 [hidden]="!nuevoJuego.gano">Ganaste!</h2>
-    <h2 [hidden]="nuevoJuego.gano" *ngIf="nuevoJuego.numeroSecreto!=0">Todavia no gano</h2>
-    <h3>Numero ingresado: {{nuevoJuego.numeroIngresado}}  </h3>
+    <h4 [hidden]="nuevoJuego.gano" *ngIf="nuevoJuego.numeroSecreto!=0">Todavia no gano</h4>
+    <h5>Numero ingresado: {{nuevoJuego.numeroIngresado}}  </h5>
 
-    <h2><p [hidden]="ocultarVerificar" *ngIf="nuevoJuego.numeroSecreto!=0" >Esperando que ingrese un número y verifique</p></h2>
-    <h2><p [hidden]="!ocultarVerificar" *ngIf="nuevoJuego.numeroSecreto!=0" ><i class="fa fa-spinner fa-spin"></i>Verificando</p></h2>
+    <h6><p [hidden]="!ocultarVerificar" *ngIf="nuevoJuego.numeroSecreto!=0" ><i class="fa fa-spinner fa-spin"></i>Verificando</p></h6>
 
     <h2 [hidden]="ocultarVerificar"><button  *ngIf="nuevoJuego.numeroSecreto!=0" (click)="verificar()" mat-raised-button  color="primary">Verificar</button></h2>
 
 
     
   </form>
-  <!-- <div id="snackbar">{{Mensajes}}</div> -->
 </mat-card>

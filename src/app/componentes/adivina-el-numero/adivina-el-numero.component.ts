@@ -27,10 +27,12 @@ export class AdivinaElNumeroComponent implements OnInit {
     this.ocultarVerificar=false;
     this.Tiempo=3; 
   }
+
   generarnumero() {
     this.nuevoJuego.generarnumero();
     this.contador=0;
   }
+  
   verificar()
   {
     this.contador++;

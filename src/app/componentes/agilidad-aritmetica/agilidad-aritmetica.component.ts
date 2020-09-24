@@ -5,6 +5,7 @@ import {Subscription} from "rxjs";
 //import {TimerObservable} from "rxjs/observable/TimerObservable";
 
 import { FirebaseService } from '../../servicios/firebase.service';
+
 @Component({
   selector: 'app-agilidad-aritmetica',
   templateUrl: './agilidad-aritmetica.component.html',

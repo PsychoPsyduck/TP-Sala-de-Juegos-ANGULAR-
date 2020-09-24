@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { FirebaseService } from '../../servicios/firebase.service';
+import { FirebaseService } from '../../servicios/firebase.service';
 
 @Component({
   selector: 'app-adivina-frase',
@@ -10,12 +10,12 @@ export class AdivinaFraseComponent implements OnInit {
 
   listadoDeFrases = [
     { 'frase': 'Hasta la vista, baby', 'pelicula': 'Terminator', 'opciones': ['Robocop', 'Terminator', 'Rambo'] },
-    { 'frase': 'May the Force be with you', 'pelicula': 'Star Wars', 'opciones': ['Star Trek', 'Starship Troopers', 'Star Wars'] },
-    { 'frase': 'Say what again, I dare you!', 'pelicula': 'Pulp Fiction', 'opciones': ['Pulp Fiction', 'Reservoir Dogs', 'Inglorious Bastards'] },
-    // tslint:disable-next-line: max-line-length
-    { 'frase': 'I\'m going to make him an offer he can\'t refuse', 'pelicula': 'The Godfather', 'opciones': ['Taxi Driver', 'The Godfather', 'The Sopranos'] },
-    { 'frase': 'You can\'t handle the truth!', 'pelicula': 'A Few Good Men', 'opciones': ['A Few Good Men', 'Reservoir Dogs', 'Inglorious Bastards'] },
-    { 'frase': 'You\'re gonna need a bigger boat', 'pelicula': 'Jaws', 'opciones': ['Jaws', 'Reservoir Dogs', 'Inglorious Bastards'] }
+    { 'frase': 'Que la fuerza te acompañe', 'pelicula': 'Star Wars', 'opciones': ['Star Trek', 'Starship Troopers', 'Star Wars'] },
+    { 'frase': 'Acaso eres gallina Mcfly?', 'pelicula': 'Volver al Futuro', 'opciones': ['Pulp Fiction', 'Volver al Futuro', 'Bastardos sin Gloria'] },
+    { 'frase': 'Le hare una oferta que no podra rechazar', 'pelicula': 'El Padrino', 'opciones': ['Los Soprano', 'El Padrino', 'Pulp Fiction'] },
+    { 'frase': 'Feliz Navidad, inmundo animal', 'pelicula': 'Mi Pobre Angelito', 'opciones': ['Mi Pobre Angelito', 'El Padrino', 'Bastardos sin Gloria'] },
+    { 'frase': 'Houston, tenemos un problema', 'pelicula': 'Apollo 13', 'opciones': ['Starship Troopers', 'Star Trek', 'Apollo 13'] },
+    { 'frase': 'Elemental, mi querido Watson', 'pelicula': 'Sherlock Holmes', 'opciones': ['Volver al Futuro', 'Sherlock Holmes', 'Mi Pobre Angelito'] }
   ];
 
   repetidor: any;
@@ -27,9 +27,11 @@ export class AdivinaFraseComponent implements OnInit {
   perdedor = false;
   contador: number;
   termina = false;
+  sinTiempo = false;
+  checkTime = false;
+  terminado = false;
 
-
-  constructor() {} //public firebaseService: FirebaseService 
+  constructor(public firebaseService: FirebaseService) {}
 
   ngOnInit() {
   }
@@ -39,18 +41,20 @@ export class AdivinaFraseComponent implements OnInit {
     this.perdedor = false;
     this.termina = false;
     this.ganador = false;
+    this.checkTime = false;
+    this.terminado = false;
     this.fraseRandom = this.listadoDeFrases[Math.floor(Math.random() * this.listadoDeFrases.length)];
     this.respuesta = this.fraseRandom.pelicula;
-    this.tiempo = this.fraseRandom.frase.length;
-    console.log('tiempo total es: ' + this.tiempo);
+    this.tiempo = Math.floor((this.fraseRandom.frase.length) / 2);
     this.repetidor = setInterval(() => {
       this.tiempo--;
-      console.log('Tiempo transcurrido:', this.tiempo);
       if (this.tiempo <= 0 ) {
         clearInterval(this.repetidor);
         this.terminar();
+        this.sinTiempo = true;
+        this.check();
       }
-      }, 400);
+      }, 900);
   }
 
   responder(guess: string) {
@@ -60,9 +64,10 @@ export class AdivinaFraseComponent implements OnInit {
     if (this.respuesta.toLowerCase() == guess.toLowerCase()) {
       this.ganador = true;
       this.perdedor = false;
-      this.loadResult();
+      this.firebaseService.saveResult('Frase', true);
     } else {
         this.perdedor = true;
+        this.firebaseService.saveResult('Frase', false);
     }
   }
 
@@ -70,15 +75,15 @@ export class AdivinaFraseComponent implements OnInit {
   terminar() {
     this.respondiendo = false;
     this.termina = true;
+    this.terminado = true;
     this.tiempo = 0;
   }
 
-  loadResult() {
-    // this.firebaseService.addResult('CinemaQuotes', 1, true)
-    //   .then(result => {
-    //     console.log('insert result');
-    //   });
+
+  check() {
+    if(this.sinTiempo && !this.ganador && !this.perdedor) {
+      this.checkTime = true;
+      this.firebaseService.saveResult('Frase', false);
+    }
   }
-
-
 }

@@ -5,6 +5,7 @@ import {Subscription, BehaviorSubject} from "rxjs";
 
 import { FirebaseService } from '../../servicios/firebase.service';
 import { Jugador } from '../../clases/jugador';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 //import {TimerObservable} from "rxjs/observable/TimerObservable";
 @Component({
@@ -14,6 +15,7 @@ import { Jugador } from '../../clases/jugador';
 })
 export class LoginComponent implements OnInit {
 
+  form: FormGroup;
   private subscription: Subscription;
   mail = '';
   clave= '';
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
   msjError: string;
 
   constructor(
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     public firebaseService: FirebaseService) {
@@ -35,33 +38,45 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit() {
+
+    this.form = this.fb.group({
+      mail: ['', Validators.required],
+      clave: ['', Validators.required]
+    });
+
   }
 
   Entrar() {
-    
-    this.ocultarVerificar=true;
-    this.firebaseService.login(this.mail, this.clave)
-    .then(res => {
-      this.router.navigate(['/Principal']);
-    })
-    .catch(error => {
-      this.logeando =true;
-      this.msjError = "Los datos son incorrectos o no existe el usuario";
-    });
+    const { mail, clave } = this.form.value;
+    if(mail != '' && clave != '') {
+      this.ocultarVerificar=true;
 
-    this.repetidor = setInterval(()=>{ 
-      
-      this.Tiempo--;
-      console.log("llego", this.Tiempo);
-      if(this.Tiempo==0 ) {
-        clearInterval(this.repetidor);
-        this.ocultarVerificar=false;
-        console.log(this.ocultarVerificar);
-        this.Tiempo=5;
-      }
-    }, 900);
+      this.firebaseService.login(mail, clave)
+      .then(res => {
+        this.router.navigate(['/Principal']);
+      })
+      .catch(error => {
+        this.logeando = true;
+      });
+
+      this.repetidor = setInterval(()=>{ 
+        
+        this.Tiempo--;
+        if(this.Tiempo==0 ) {
+          clearInterval(this.repetidor);
+          this.ocultarVerificar=false;
+          this.Tiempo=4;
+            this.msjError = "Error al iniciar sesion. Verifique los datos";
+        }
+      }, 900);
+    }
   }
 
-  
+  Invitado() {
+    this.form.setValue({
+      mail: "invitado@mail.com",
+      clave: "invitado"
+    });
+  }
   
 }

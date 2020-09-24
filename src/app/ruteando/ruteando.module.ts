@@ -26,6 +26,7 @@ import { MemotestComponent } from '../componentes/memotest/memotest.component';
 import { PPTComponent } from '../componentes/ppt/ppt.component';
 import { AnagramaComponent } from '../componentes/anagrama/anagrama.component';
 import { ConfiguracionComponent } from '../componentes/configuracion/configuracion.component';
+import { AdivinaFraseComponent } from '../componentes/adivina-frase/adivina-frase.component';
 
 
 // declaro donde quiero que se dirija
@@ -52,7 +53,8 @@ children:
       {path: 'TaTeTi' , component: TatetiComponent},
       {path: 'MemoTest' , component: MemotestComponent},
       {path: 'PPT' , component: PPTComponent},
-      {path: 'Anagrama' , component: AnagramaComponent}]
+      {path: 'Anagrama' , component: AnagramaComponent},
+      {path: 'AdivinaFrase' , component: AdivinaFraseComponent}]
 },
 {path: 'error' , component: ErrorComponent},
 {path: '**' , component: ErrorComponent}];

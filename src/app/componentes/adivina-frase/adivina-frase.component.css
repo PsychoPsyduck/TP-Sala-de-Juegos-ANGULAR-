@@ -1,3 +1,10 @@
+mat-card {
+  max-width: 70%;
+  margin: 2em auto;
+  text-align: center;
+  align-content: center;
+}
+
 .typewriter {
     font-family: Courier, monospace;
     display: inline-block;
@@ -44,7 +51,7 @@
   
   /***************************************/
   .text{
-    color: #fff;
+    /* color: #fff; */
     line-height: 170px;
     text-align: center;
     display: inline;
@@ -244,46 +251,3 @@
     background: rgba( 20, 224, 133, 1 );
   }
   
-  
-  /****************************************************/
-  
-  #comenzar {
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-    position: absolute;
-    font-size: 1.5em;
-    text-transform: uppercase;
-    padding: 7px 20px;
-    left: 50%;
-    width: 200px;
-    margin-left: -100px;
-    top: 50%;
-    border-radius: 10px;
-    color: white;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.8);
-    border: 5px solid transparent;
-    border-bottom-color: rgba(0,0,0,0.35);
-    background: hsla(260, 100%, 50%, 1);
-    cursor: pointer;
-    outline: 0 !important;
-  
-    animation: pulse 1s infinite alternate;
-    transition: background 0.4s, border 0.2s, margin 0.2s;
-  }
-  #comenzar:hover {
-    background: hsla(220, 100%, 60%, 1);
-    margin-top: -1px;
-  
-    animation: none;
-  }
-  #comenzar:active {
-    border-bottom-width: 0;
-    margin-top: 5px;
-  }
-  @keyframes pulse {
-    0% {
-      margin-top: 0px;
-    }
-    100% {
-      margin-top: 6px;
-    }
-  }

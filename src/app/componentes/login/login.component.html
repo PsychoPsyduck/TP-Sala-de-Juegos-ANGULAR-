@@ -1,26 +1,42 @@
 <mat-toolbar color="primary" class="expanded-toolbar">Ingreso de Jugador</mat-toolbar>
 
 <mat-card>
-  <mat-card-title>Login</mat-card-title>
+  
   <div mat-card-avatar class="example-header-image"></div>
-  <form action="">
+  <form [formGroup]="form" >
     <mat-form-field class="full-width-input">
       <mat-label>Mail</mat-label>
-      <input matInput type="text" [(ngModel)]="mail" name="umail">
+      <input matInput type="text" formControlName="mail"> 
+      <!-- [(ngModel)]="mail" -->
+      <mat-error>
+        Ingrese un mail valido
+      </mat-error>
     </mat-form-field>
     <br>
     <mat-form-field class="full-width-input">
       <mat-label>Contraseña</mat-label>
-      <input matInput type="password" [(ngModel)]="clave" name="psw">
+      <input matInput type="password" formControlName="clave">
+      <!-- [(ngModel)]="clave" -->
+      <mat-error>
+        Ingrese una contraseña valida
+      </mat-error>
     </mat-form-field>
     <br>
     <button [hidden]="ocultarVerificar"  mat-raised-button color="primary" *ngIf="logeando"  (click)="Entrar()">Entrar</button>
     <button [hidden]="!ocultarVerificar" mat-raised-button color="primary" *ngIf="logeando"  (click)="Entrar()"><i class="fa fa-spinner fa-spin"></i> Ingresando</button>
+    
+    <mat-error *ngIf="msjError">
+      <br>
+      {{msjError}}
+    </mat-error>
   </form>
   <br>
   <mat-divider></mat-divider>
   <br>
-  <h6>No tenes usuario? <a href="/Registro">Registrate</a></h6>
+  <h6>No tenes usuario? <a href="/Registro">Registrate</a></h6><br>
+  <mat-divider></mat-divider>
+  <br>
+  <button mat-raised-button class="btn-warning" *ngIf="logeando"  (click)="Invitado()">Ingresar como Invitado</button>
 </mat-card>
 
 <app-footer></app-footer>
